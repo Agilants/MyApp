@@ -1,0 +1,93 @@
+<div class="w3-container ">
+  <div class="w3-container w3-margin-top">
+    <div class="w3-row-padding">
+      <div [ngClass]=" selectedTab=='1' ? 'w3-green': 'w3-dark-grey'  " (click)="switchTab('1')" class="w3-col s6  b-r1 pointer w3-center">
+        <p>Home</p>
+      </div>
+      <div [ngClass]="selectedTab=='2' ? 'w3-green': 'w3-dark-grey'  " (click)="switchTab('2')" class="w3-col s6 b-r2 pointer w3-center">
+        <p>Products</p>
+      </div>
+    </div>
+    <div *ngIf="selectedTab=='1'" class="w3-row-padding">
+      <div class="w3-col s4 w3-center">
+        <div class="image-container">
+          <img (click)="viewImage('./assets/images/a.jpg')" class="w3-border image-item w3-padding" src="./assets/images/a.jpg">
+        </div>
+      </div>
+      <div class="w3-col s4  w3-center ">
+        <div class="image-container">
+          <img (click)="viewImage('./assets/images/b.jpg')" class="w3-border image-item  w3-padding" src="./assets/images/b.jpg">
+        </div>
+      </div>
+      <div class="w3-col s4  w3-center">
+        <div class="image-container">
+          <img (click)="viewImage('./assets/images/c.jpg')" class="w3-border  image-item w3-padding" src="./assets/images/c.jpg">
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedTab=='2'" class="w3-row-padding">
+      <div *ngIf="list" class="w3-row-padding">
+        <div class="w3-col s4 w3-center">
+          <div class="image-container">
+            <img (click)="viewgrid('./assets/images/a.jpg')" class="w3-border image-item w3-padding" src="./assets/images/a.jpg">
+          </div>
+        </div>
+        <div class="w3-col s4  w3-center ">
+          <div class="image-container">
+            <img (click)="viewgrid('./assets/images/b.jpg')" class="w3-border image-item  w3-padding" src="./assets/images/b.jpg">
+          </div>
+        </div>
+        <div class="w3-col s4  w3-center">
+          <div class="image-container">
+            <img (click)="viewgrid('./assets/images/c.jpg')" class="w3-border  image-item w3-padding" src="./assets/images/c.jpg">
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!list" class="w3-row-padding">
+        <div class="w3-container-padding w3-row-padding img-content">
+          <img class="g-img" src="{{gridimage}}">
+        </div>
+        <div class="w3-container-padding w3-row-padding">
+          <div class="w3-col s4 w3-white w3-center">
+            <p></p>
+          </div>
+          <div class="w3-col s4  w3-center">
+            <select (change)="changeImage(gimage)" [(ngModel)]="gimage" class="w3-select" name="option">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="./assets/images/a.jpg">Image 1</option>
+              <option value="./assets/images/b.jpg">Image 2</option>
+              <option value="./assets/images/c.jpg">Image 3</option>
+            </select>
+          </div>
+          <div class="w3-col s4 w3-white w3-center">
+            <p></p>
+          </div>
+        </div>
+        <br>
+        <div class="w3-container-padding w3-row-padding">
+          <div class="w3-col s4 w3-white w3-center">
+            <p></p>
+          </div>
+          <div class="w3-col s4  w3-center">
+            <button (click)="showAlert()" class="w3-button w3-blue w3-round-xxlarge">Click to Select</button>
+          </div>
+          <div class="w3-col s4 w3-white w3-center">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="myModal" *ngIf="modal" class="modal">
+  <span (click)="close()" class="close">&times;</span>
+  <img class="modal-img" src="{{modalImage}}">
+  <div id="caption"></div>
+</div>
+
+
+<div *ngIf="alert" class="w3-panel alert w3-pale-blue w3-display-container">
+  <span (click)="alert = false" class="w3-button w3-pale-blue w3-large w3-display-topright">&times;</span>
+  <h3>Success!</h3>
+  <p>Green often indicates something successful or positive.</p>
+</div>
